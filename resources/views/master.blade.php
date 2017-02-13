@@ -19,7 +19,8 @@
 <script src="{{asset('bower_components/angular-route/angular-route.min.js')}}"></script>
 <script src="{{asset('bower_components/angular-cookies/angular-cookies.min.js')}}"></script>
 <script src="{{asset('app/js/app.js')}}"></script>
-<script src="{{asset('app/js/userController.js')}}"></script>
+<script src="{{asset('app/js/modelJS/userModel.js')}}"></script>
+<script src="{{asset('app/js/controllerJS/userController.js')}}"></script>
 
 </body>
 </html>
