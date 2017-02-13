@@ -1,4 +1,10 @@
 myApp.controller('userController', ['$scope', '$location', 'userModel', function ($scope, $location, userModel) {
+    angular.extend($scope, {
+       login: {
+           username: 'nazmus.shakib@horoppa.com',
+           password: 'pass'
+       }
+    });
 
     angular.extend($scope, {
         doLogin: function(loginForm) {
@@ -9,6 +15,10 @@ myApp.controller('userController', ['$scope', '$location', 'userModel', function
             userModel.doLogin(data).then(function () {
                 $location.path('/dashboard');
             });
+        },
+        doLogout: function () {
+            userModel.doUserLogout();
+            $location.path('/');
         }
     });
 }]);
