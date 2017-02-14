@@ -13,7 +13,7 @@ myApp.factory('userModel', ['$http', '$cookies', function ($http, $cookies) {
             }
         }).then(function successCallback(response) {
             console.log(response);
-            $cookies.put('auth', response);
+            $cookies.put('auth', JSON.stringify(response));
         }, function errorCallback(data, status, headers) {
             console.log(data, status, headers);
             alert(data);
@@ -27,6 +27,16 @@ myApp.factory('userModel', ['$http', '$cookies', function ($http, $cookies) {
         } else {
             return false;
         }
+    };
+
+    /**
+     * Get the user object converted from string to JSON
+     * @returns {user object}
+     */
+
+    userModel.getUserObject = function() {
+        var userObj = angular.fromJson($cookies.get('auth'));
+        return userObj;
     };
 
     userModel.doUserLogout = function () {
