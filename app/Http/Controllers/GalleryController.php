@@ -59,7 +59,7 @@ class GalleryController extends Controller
      */
     public function show($id)
     {
-        //
+        return Gallery::with('user')->where('id', $id)->first();
     }
 
     /**

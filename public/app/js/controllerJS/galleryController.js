@@ -1,22 +1,28 @@
-myApp.controller('galleryController', ['$scope', '$location', 'galleryModel', '$timeout',
-    function ($scope, $location, galleryModel, $timeout) {
+myApp.controller('galleryController', ['$scope', '$location', 'galleryModel', '$timeout', '$routeParams',
+    function ($scope, $location, galleryModel, $timeout, $routeParams) {
 
     // Get all the galleries
         galleryModel.getAllGalleries().then(function (response) {
-            /*$timeout(function () {
+            $timeout(function () {
                 $scope.galleries = response.data;
                 $scope.showGalleries = true;
-            }, 1000);*/
-            $scope.galleries = response.data;
-            $scope.showGalleries = true;
-
+            }, 500);
         });
+
+        // IF the param is present, load the single Gallery data.
+        if($routeParams.id) {
+            galleryModel.getGalleryById($routeParams.id).then(function (response) {
+                $scope.singleGallery = response.data;
+                console.log($scope.singleGallery);
+            });
+        }
 
         //Variables
         angular.extend($scope, {
-           newGallery: {},
+            newGallery: {},
             errorDiv: false,
-            errorMessages: []
+            errorMessages: [],
+            singleGallery: {}
         });
 
         //Functions
@@ -28,11 +34,14 @@ myApp.controller('galleryController', ['$scope', '$location', 'galleryModel', '$
                     //console.log('Correct');
                     galleryModel.saveGallery($scope.newGallery).then(function (response) {
                         $location.path('gallery/view');
-                    })
+                    });
                 } else {
                     $scope.formSubmitted = true;
                     console.log('Error');
                 }
+            },
+            viewGallery: function (id) {
+                $location.path('/gallery/view/' + id);
             }
         });
     }
