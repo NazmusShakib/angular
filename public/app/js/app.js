@@ -15,13 +15,13 @@ myApp.config(['$routeProvider', '$locationProvider',
 
     $routeProvider.when('/gallery/view', {
         templateUrl: 'templates/gallery/gallery-view.html',
-        controlelr: 'userController',
+        controller: 'galleryController',
         authenticated: true
     });
 
     $routeProvider.when('/gallery/add', {
         templateUrl: 'templates/gallery/gallery-add.html',
-        controller: 'userController',
+        controller: 'galleryController',
         authenticated: true
     });
 
@@ -31,7 +31,7 @@ myApp.config(['$routeProvider', '$locationProvider',
         authenticated: true
     });
 
-    $routeProvider.otherwise('/');
+    $routeProvider.otherwise('/dashboard');
 }]);
 
 myApp.run(['$rootScope', '$location', 'userModel',

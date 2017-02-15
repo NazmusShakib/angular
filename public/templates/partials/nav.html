@@ -8,7 +8,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="javascript:void(0)">{{user.data.name}}</a>
+            <a class="navbar-brand" href="#!dashboard">My Gallery</a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -20,19 +20,22 @@
                 </li>
 
                 <li ng-repeat="link in navUrl">
-                    <a href="#!{{link.url}}" ng-hide="link.subMenu">{{link.link}}</a>
+                    <a href="#!{{link.url}}" ng-hide="link.subMenu" ng-class="checkActiveLink(link.url)">{{link.link}}</a>
                     <a href="javascript:void(0)" ng-show="link.subMenu"
                     class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
                        aria-expanded="false">{{link.link}}<span class="caret"></span></a>
                     <ul class="dropdown-menu" ng-show="link.subMenu">
-                        <li ng-repeat="sublink in link.subMenu"><a href="#!{{sublink.url}}">{{sublink.link}}</a></li>
+                        <li ng-repeat="sublink in link.subMenu">
+                            <a href="#!{{sublink.url}}" ng-class="checkActiveLink(sublink.url)">{{sublink.link}}</a>
+                        </li>
                     </ul>
                 </li>
             </ul>
 
             <ul class="nav navbar-nav navbar-right">
                 <li class="dropdown">
-                    <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{user.name}} <span class="caret"></span></a>
+                    <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                       aria-haspopup="true" aria-expanded="false">{{user.name}} <span class="caret"></span></a>
                     <ul class="dropdown-menu">
                         <li><a href="#">Action</a></li>
                         <li><a href="#">Another action</a></li>

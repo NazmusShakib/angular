@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <title>Document</title>
-    <link rel="stylesheet" href="{{asset('bower_components/bootstrap/dist/css/bootstrap.min.css')}}">
+    <link rel="stylesheet" href="{{asset('css/bootstrap-lumen.min.css')}}">
+    <link rel="stylesheet" href="{{asset('css/style.css')}}">
     <script>var baseUrl = "{{ url('/') }}/"</script>
 </head>
 <body >
@@ -30,6 +31,9 @@
 <script src="{{asset('app/js/controllerJS/userController.js')}}"></script>
 <script src="{{asset('app/js/controllerJS/globalController.js')}}"></script>
 <script src="{{asset('app/js/controllerJS/navController.js')}}"></script>
+{{--Gallery angular Files--}}
+<script src="{{asset('app/js/modelJS/galleryModel.js')}}"></script>
+<script src="{{asset('app/js/controllerJS/galleryController.js')}}"></script>
 
 </body>
 </html>

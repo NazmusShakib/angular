@@ -13,7 +13,7 @@ myApp.factory('userModel', ['$http', '$cookies', function ($http, $cookies) {
             }
         }).then(function successCallback(response) {
             console.log(response);
-            $cookies.put('auth', JSON.stringify(response));
+            $cookies.put('auth', JSON.stringify(response.data));
         }, function errorCallback(data, status, headers) {
             console.log(data, status, headers);
             alert(data);

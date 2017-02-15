@@ -13,11 +13,11 @@ myApp.controller('navController', ['$scope', '$location', 'userModel', function 
                url: '/gallery/add'
            }]
        }, {
-           link: 'Test',
-           url: '/dashboard'
+           link: 'Add Gallery',
+           url: '/gallery/add'
        }, {
-           link: 'Test2',
-           url: '/dashboard'
+           link: 'View Gallery',
+           url: '/gallery/view'
        }]
     });
 
@@ -26,6 +26,11 @@ myApp.controller('navController', ['$scope', '$location', 'userModel', function 
         doLogout: function () {
             userModel.doUserLogout();
             $location.path('/');
-        }
+        },
+       checkActiveLink: function (routeLink) {
+            if ($location.path() == routeLink) {
+                return 'active';
+            }
+       }
     });
 }]);
