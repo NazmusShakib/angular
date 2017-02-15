@@ -22,7 +22,23 @@ myApp.controller('galleryController', ['$scope', '$location', 'galleryModel', '$
             newGallery: {},
             errorDiv: false,
             errorMessages: [],
-            singleGallery: {}
+            singleGallery: {},
+            dropzoneConfig: {
+                'options': { // passed into the Dropzone constructor
+                    'url': baseUrl + 'file-upload'
+                },
+                'eventHandlers': {
+                    'sending': function (file, xhr, formData) {
+                        console.log('Sending');
+                        formData.append('_token', csrfToken);
+                        formData.append('galleryId', $routeParams.id);
+                    },
+                    'success': function (file, response) {
+                        console.log('Success');
+                        console.log(response);
+                    }
+                }
+            }
         });
 
         //Functions

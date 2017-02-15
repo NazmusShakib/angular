@@ -18,3 +18,7 @@ Route::get('/', function () {
 Route::post('auth', 'UserController@checkAuth');
 Route::resource('users', 'UserController');
 Route::resource('gallery', 'GalleryController');
+
+Route::post('file-upload', function (\Illuminate\Http\Request $request) {
+    return response($request->all(), 201);
+});

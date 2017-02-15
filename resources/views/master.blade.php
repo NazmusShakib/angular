@@ -4,8 +4,12 @@
     <meta charset="UTF-8">
     <title>Document</title>
     <link rel="stylesheet" href="{{asset('css/bootstrap-lumen.min.css')}}">
+    <link rel="stylesheet" href="{{asset('bower_components/dropzone/dist/basic.css')}}">
+    <link rel="stylesheet" href="{{asset('bower_components/dropzone/dist/dropzone.css')}}">
+    <link rel="stylesheet" href="{{asset('css/bootstrap-lumen.min.css')}}">
     <link rel="stylesheet" href="{{asset('css/style.css')}}">
     <script>var baseUrl = "{{ url('/') }}/"</script>
+    <script>var csrfToken = "{{ csrf_token() }}"</script>
 </head>
 <body >
 
@@ -19,6 +23,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha.6/js/bootstrap.min.js"></script>--}}
 
 <script type="text/javascript" src="{{asset('bower_components/jquery/dist/jquery.min.js')}}"></script>
+<script type="text/javascript" src="{{asset('bower_components/dropzone/dist/dropzone.js')}}"></script>
 <script type="text/javascript" src="{{asset('bower_components/bootstrap/dist/js/bootstrap.min.js')}}"></script>
 
 
