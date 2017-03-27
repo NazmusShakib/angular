@@ -10,6 +10,11 @@ class UserController extends Controller
 
     public function checkAuth(Request $request)
     {
+        echo '<pre>';
+        print_r($request->all());
+        echo '</pre>';
+        exit();
+
         // Setting the credential array.
         $credentials = [
               'email' => $request['email'],
