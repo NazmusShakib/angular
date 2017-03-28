@@ -33,6 +33,7 @@
 {{--My app code is from here.--}}
 <script src="{{asset('app2/js/app.js')}}"></script>
 <script src="{{asset('app2/js/ctrlJS/ctrl1.js')}}"></script>
+<script src="{{asset('app2/js/modelJS/model1.js')}}"></script>
 
 </body>
 </html>
