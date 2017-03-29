@@ -117,7 +117,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.1/angular-material.min.js"></script>
 
 <!-- Angular Application Scripts Load  -->
-<script src="{{ asset('supplier/app.js') }}"></script>
-<script src="{{ asset('supplier/controllers/SupplierController.js') }}"></script>
+<script src="{{ asset('ng-supplier/app.js') }}"></script>
+<script src="{{ asset('ng-supplier/controllers/SupplierController.js') }}"></script>
 </body>
 </html>

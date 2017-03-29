@@ -12,7 +12,7 @@
 */
 
 Route::get('/', function () {
-    return view('supplier');
+    return view('customer');
 });
 
 Route::post('auth', 'UserController@checkAuth');
@@ -22,3 +22,5 @@ Route::resource('gallery', 'GalleryController');
 Route::post('file-upload', function (\Illuminate\Http\Request $request) {
     return response($request->all(), 201);
 });
+
+Route::resource('customer', 'CustomerController');
