@@ -59,5 +59,26 @@ myApp.controller('customerCtrl', ['$scope', '$http', '$location', '$timeout', '$
             $('#myModal').modal('show');
         };
 
+        // save new supplier and update existing supplier
+        $scope.save = function (modalstate, id) {
+            var url = baseUrl + "customer";
+            if (modalstate === 'edit') {
+                url += "/" + id;
+            }
+            $http({
+                method: 'POST',
+                url: url,
+                data: $.param($scope.customer),
+                headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+            }).then(function successCallback(response) {
+                $('#myModal').modal('hide');
+                $location.path('/');
+                console.log(response);
+            }, function errorCallback(data, status, headers) {
+                console.log(data, status, headers);
+                alert(data);
+            });
+        }
+
     }
 ]);

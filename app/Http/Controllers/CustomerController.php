@@ -35,9 +35,9 @@ class CustomerController extends Controller
      */
     public function store(Request $request)
     {
-        $customer = new Supplier;
-        $customer->customerName = $request->input('customerName');
-        $customer->customerEmail = $request->input('customerrEmail');
+        $customer = new Customer;
+        $customer->customerName = $request->customerName;
+        $customer->customerEmail = $request->customerEmail;
         $customer->customerContact = $request->input('customerContact');
         $customer->customerPosition = $request->input('customerPosition');
         $customer->save();
