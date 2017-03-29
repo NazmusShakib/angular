@@ -12,7 +12,7 @@
 */
 
 Route::get('/', function () {
-    return view('practice1');
+    return view('supplier');
 });
 
 Route::post('auth', 'UserController@checkAuth');
