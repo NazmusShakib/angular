@@ -1,37 +1,38 @@
 <h2>Simple CRUD Application with AngularJs</h2>
 
-    <table class="table table-striped">
-        <thead>
-        <tr>
-            <th>ID</th>
-            <th>Customer Name</th>
-            <th>Customer Email</th>
-            <th>Customer Contact</th>
-            <th>Customer Position</th>
-            <th>
-                <button id="btn-add" class="btn btn-success btn-xs" ng-click="toggle('add', 0)">Add New
-                    Customer</button>
-            </th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr ng-repeat="customer in customers | orderBy:id:true" ng-show="showCustomers">
-            <td>{{ customer.id }}</td>
-            <td>{{ customer.customerName }}</td>
-            <td>{{ customer.customerEmail }}</td>
-            <td>{{ customer.customerContact }}</td>
-            <td>{{ customer.customerPosition }}</td>
-            <td>
-                <button class="btn btn-warning btn-xs btn-detail" ng-click="toggle('edit', customer.id)">
-                    <span class="glyphicon glyphicon-edit"></span>
-                </button>
-                <button class="btn btn-danger btn-xs btn-delete" ng-click="confirmDelete(customer.id)">
-                    <span class="glyphicon glyphicon-trash"></span>
-                </button>
-            </td>
-        </tr>
-        </tbody>
-    </table>
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Customer Name</th>
+        <th>Customer Email</th>
+        <th>Customer Contact</th>
+        <th>Customer Position</th>
+        <th>
+            <button id="btn-add" class="btn btn-success btn-xs" ng-click="toggle('add', 0)">Add New
+                Customer
+            </button>
+        </th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr ng-repeat="customer in customers | orderBy:id:true" ng-show="showCustomers">
+        <td>{{ customer.id }}</td>
+        <td>{{ customer.customerName }}</td>
+        <td>{{ customer.customerEmail }}</td>
+        <td>{{ customer.customerContact }}</td>
+        <td>{{ customer.customerPosition }}</td>
+        <td>
+            <button class="btn btn-warning btn-xs btn-detail" ng-click="toggle('edit', customer.id)">
+                <span class="glyphicon glyphicon-edit"></span>
+            </button>
+            <button class="btn btn-danger btn-xs btn-delete" ng-click="confirmDelete(customer.id)">
+                <span class="glyphicon glyphicon-trash"></span>
+            </button>
+        </td>
+    </tr>
+    </tbody>
+</table>
 
 <!-- show modal  -->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -87,7 +88,9 @@
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-primary" id="btn-save" ng-click="save(modalstate, id)" ng-disabled="frmCustomer.$invalid">Save Changes</button>
+                <button type="button" class="btn btn-primary" id="btn-save" ng-click="save(modalstate, id)"
+                        ng-disabled="frmCustomer.$invalid">Save Changes
+                </button>
             </div>
         </div>
     </div>

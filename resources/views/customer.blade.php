@@ -8,7 +8,7 @@
     <script>var baseUrl = "{{ url('/') }}/"</script>
     <script>var csrfToken = "{{ csrf_token() }}"</script>
 </head>
-<body >
+<body>
 
 <div class="container">
 

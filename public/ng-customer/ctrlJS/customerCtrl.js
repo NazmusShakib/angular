@@ -80,5 +80,23 @@ myApp.controller('customerCtrl', ['$scope', '$http', '$location', '$timeout', '$
             });
         }
 
+        // delete supplier record
+        $scope.confirmDelete = function (id) {
+            var isConfirmDelete = confirm('Are you sure you want this record?');
+            if (isConfirmDelete) {
+                $http({
+                    method: 'DELETE',
+                    url: baseUrl + 'customer/' + id
+                }).then(function successCallback(response) {
+                    console.log(response);
+                }, function errorCallback(data, status, headers) {
+                    console.log(data, status, headers);
+                    alert(data);
+                });
+            } else {
+                return false;
+            }
+        }
+
     }
 ]);
