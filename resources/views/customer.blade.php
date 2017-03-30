@@ -31,5 +31,11 @@
 <script src="{{asset('ng-customer/ctrlJS/customerCtrl.js')}}"></script>
 <script src="{{asset('ng-customer/modelJS/customerModel.js')}}"></script>
 
+<script>
+    $(".alert-success").fadeTo(2000, 500).slideUp(500, function(){
+        $(".alert-success").slideUp(500);
+    });
+</script>
+
 </body>
 </html>

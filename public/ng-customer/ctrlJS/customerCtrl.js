@@ -42,7 +42,6 @@ myApp.controller('customerCtrl', ['$scope', '$http', '$location', '$timeout', '$
             $scope.modalstate = modalstate;
             switch (modalstate) {
                 case 'add':
-                    $scope.frmCustomer.$setPristine();
                     $scope.form_title = "Add New Customer";
                     break;
                 case 'edit':
@@ -108,8 +107,10 @@ myApp.controller('customerCtrl', ['$scope', '$http', '$location', '$timeout', '$
                     method: 'GET',
                     url: baseUrl
                 }).then(function (responseSuccess) {
+                    $scope.success_message = "Customer Deleted :)";
                     $scope.customer = responseSuccess.data;
                 }, function (responseError) {
+                    $scope.danger_message = "Failed to delete :(";
                     $scope.error = responseError;
                 });
             }
@@ -122,7 +123,8 @@ myApp.controller('customerCtrl', ['$scope', '$http', '$location', '$timeout', '$
                 $timeout(function () {
                     $scope.customers = response.data;
                     $scope.showCustomers = true;
-                }, 500);
+                    $scope.flashMessage = true;
+                }, 200);
             });
         }
     }
