@@ -39,7 +39,7 @@ class CustomerController extends Controller
         $customer->customerName = $request->customerName;
         $customer->customerEmail = $request->customerEmail;
         $customer->customerContact = $request->input('customerContact');
-        $customer->customerPosition = $request->input('customerPosition');
+        $customer->customerAddress = $request->input('customerAddress');
         $customer->save();
         return 'Customer record successfully created with id' . $customer->id;
     }
@@ -79,7 +79,7 @@ class CustomerController extends Controller
         $customer->customerName = $request->input('customerName');
         $customer->customerEmail = $request->input('customerEmail');
         $customer->customerContact = $request->input('customerContact');
-        $customer->customerPosition = $request->input('customerPosition');
+        $customer->customerAddress = $request->input('customerAddress');
         $customer->save();
         return 'Customer record successfully updated with id ' . $customer->id;
     }

@@ -18,7 +18,7 @@ class CreateCustomerTable extends Migration
             $table->string('customerName')->unique();
             $table->string('customerEmail')->unique();
             $table->string('customerContact')->nullable();
-            $table->string('customerPosition')->nullable();
+            $table->string('customerAddress')->nullable();
             $table->timestamps();
         });
     }

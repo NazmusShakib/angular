@@ -8,6 +8,7 @@ myApp.controller('customerCtrl', ['$scope', '$http', '$location', '$timeout', '$
             }, 500);
         });
 
+
         // IF the param is present, load the single Gallery data.
         if($routeParams.id) {
             customerModel.getCustomerById($routeParams.id).then(function (response) {
@@ -88,6 +89,7 @@ myApp.controller('customerCtrl', ['$scope', '$http', '$location', '$timeout', '$
                     method: 'DELETE',
                     url: baseUrl + 'customer/' + id
                 }).then(function successCallback(response) {
+                    $scope.getall();
                     console.log(response);
                 }, function errorCallback(data, status, headers) {
                     console.log(data, status, headers);
@@ -96,7 +98,32 @@ myApp.controller('customerCtrl', ['$scope', '$http', '$location', '$timeout', '$
             } else {
                 return false;
             }
-        }
+        };
 
+        // Refresh page
+
+        angular.extend($scope, {
+            getCustomers: function () {
+                $http({
+                    method: 'GET',
+                    url: baseUrl
+                }).then(function (responseSuccess) {
+                    $scope.customer = responseSuccess.data;
+                }, function (responseError) {
+                    $scope.error = responseError;
+                });
+            }
+        });
+
+
+
+        $scope.getall = function () {
+            customerModel.getAllCustomers().then(function (response) {
+                $timeout(function () {
+                    $scope.customers = response.data;
+                    $scope.showCustomers = true;
+                }, 500);
+            });
+        }
     }
 ]);
