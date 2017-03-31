@@ -25,7 +25,7 @@ app.controller('SupplierController', function ($scope, $http, API_URL) {
         }
         console.log(id);
         $('#myModal').modal('show');
-    }
+    };
 
     // save new supplier and update existing supplier
     $scope.save = function (modalstate, id) {

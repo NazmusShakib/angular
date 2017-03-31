@@ -3,9 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Customer;
-
-class CustomerController extends Controller
+use App\Items;
+class ItemController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +13,14 @@ class CustomerController extends Controller
      */
     public function index(Request $request)
     {
-        return Customer::orderBy('id', 'asc')->get();
+        $input = $request->all();
+        if($request->get('search')){
+            $items = Item::where("title", "LIKE", "%{$request->get('search')}%")
+                ->paginate(5);
+        }else{
+            $items = Item::paginate(5);
+        }
+        return response($items);
     }
 
     /**
@@ -35,13 +41,9 @@ class CustomerController extends Controller
      */
     public function store(Request $request)
     {
-        $customer = new Customer;
-        $customer->customerName = $request->customerName;
-        $customer->customerEmail = $request->customerEmail;
-        $customer->customerContact = $request->customerContact;
-        $customer->customerAddress = $request->customerAddress;
-        $customer->save();
-        return 'Customer record successfully created with id' . $customer->id;
+        $input = $request->all();
+        $create = Item::create($input);
+        return response($create);
     }
 
     /**
@@ -52,7 +54,7 @@ class CustomerController extends Controller
      */
     public function show($id)
     {
-        return Customer::find($id);
+        //
     }
 
     /**
@@ -63,7 +65,8 @@ class CustomerController extends Controller
      */
     public function edit($id)
     {
-        //
+        $item = Item::find($id);
+        return response($item);
     }
 
     /**
@@ -75,13 +78,10 @@ class CustomerController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $customer = Customer::find($id);
-        $customer->customerName = $request->customerName;
-        $customer->customerEmail = $request->customerEmail;
-        $customer->customerContact = $request->customerContact;
-        $customer->customerAddress = $request->customerAddress;
-        $customer->save();
-        return 'Customer record successfully updated with id ' . $customer->id;
+        $input = $request->all();
+        Item::where("id",$id)->update($input);
+        $item = Item::find($id);
+        return response($item);
     }
 
     /**
@@ -92,7 +92,6 @@ class CustomerController extends Controller
      */
     public function destroy($id)
     {
-        $customer = Customer::find($id)->delete();
-        return 'Customer record successfully deleted';
+        return Item::where('id',$id)->delete();
     }
 }

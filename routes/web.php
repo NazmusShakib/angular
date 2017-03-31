@@ -24,3 +24,6 @@ Route::post('file-upload', function (\Illuminate\Http\Request $request) {
 });
 
 Route::resource('customer', 'CustomerController');
+
+
+Route::resource('items', 'ItemController');

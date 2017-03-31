@@ -1,21 +1,32 @@
 <h2>Simple CRUD Application with AngularJs</h2>
-<div ng-show="flashMessage">
-        <div class="alert alert-success alert-dismissible">
-            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-            <h4><i class="icon fa fa-check"></i> Alert!</h4>
-            <span id="alert-message">Customer Deleted :)</span>
-        </div>
-<!--
-        <div class="alert alert-danger alert-dismissible">
-            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-            <h4><i class="icon fa fa-check"></i> Alert!</h4>
-            <span id="alert-message-error">{{danger_message}}</span>
-        </div>-->
+<div ng-show="flashMessage" class="flashEffect">
+    <div class="alert alert-success alert-dismissible" id="floating_alert">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+        <h4><i class="icon fa fa-check"></i> Alert!</h4>
+        <span id="alert-message">{{ success_message }}</span>
+    </div>
+    <!--
+            <div class="alert alert-danger alert-dismissible">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                <h4><i class="icon fa fa-check"></i> Alert!</h4>
+                <span id="alert-message-error">{{danger_message}}</span>
+            </div>-->
+</div>
+<input type="button" id="delete" class="btn btn-danger" ng-model="da" value="Delete Selected Customers"
+       ng-click="DeleteSelected()"/>
+<br/><br/>
+
+<div class="input-group">
+    <input type="text" class="form-control input-sm ng-valid ng-dirty" placeholder="Search" ng-change="searchDB()" ng-model="searchText" name="table_search" title="" tooltip="" data-original-title="Min character length is 3">
+    <span class="input-group-addon">Search</span>
 </div>
 
 <table class="table table-striped">
     <thead>
     <tr>
+        <th>
+            <input type="checkbox" id="checkAll" ng-model="cust1.custt2" ng-click="ToggleSelectAll()"/>
+        </th>
         <th>ID</th>
         <th>Customer Name</th>
         <th>Customer Email</th>
@@ -30,6 +41,10 @@
     </thead>
     <tbody>
     <tr ng-repeat="customer in customers | orderBy:id:true" ng-show="showCustomers">
+        <td>
+            <input type="checkbox" class="checkBox" value="{{customer.id}}" ng-checked="selectAll"
+                   ng-model="customer.id"/>
+        </td>
         <td>{{ customer.id }}</td>
         <td>{{ customer.customerName }}</td>
         <td>{{ customer.customerEmail }}</td>
@@ -95,8 +110,7 @@
                             <input type="text" class="form-control" id="customerAddress" name="customerAddress"
                                    placeholder="Customer Address" value=""
                                    ng-model="customer.customerAddress" ng-required="true">
-                            <span
-                                    ng-show="frmCustomer.customerAddress.$invalid && frmCustomer.customerAddress.$touched">Customer Address field is required</span>
+                            <span ng-show="frmCustomer.customerAddress.$invalid && frmCustomer.customerAddress.$touched">Customer Address field is required</span>
                         </div>
                     </div>
                 </form>
