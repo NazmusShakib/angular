@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Response;
 use App\Customer;
 
 class CustomerController extends Controller
@@ -14,7 +15,9 @@ class CustomerController extends Controller
      */
     public function index(Request $request)
     {
-        return Customer::orderBy('id', 'asc')->get();
+        //return Customer::orderBy('id', 'asc')->get();
+        $customers = Customer::orderBy('id', 'asc')->paginate(5); // 5 is the number of items to show per page
+        return Response::json($customers);
     }
 
     /**

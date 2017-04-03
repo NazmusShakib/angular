@@ -25,5 +25,16 @@ Route::post('file-upload', function (\Illuminate\Http\Request $request) {
 
 Route::resource('customer', 'CustomerController');
 
-
 Route::resource('items', 'ItemController');
+/*Route::group(['middleware' => ['web']], function () {
+    Route::resource('items', 'ItemController');
+});
+// Templates
+Route::group(array('prefix'=>'/templates/'),function(){
+    Route::get('{template}', array( function($template)
+    {
+        $template = str_replace(".html","",$template);
+        View::addExtension('html','php');
+        return View::make('templates.'.$template);
+    }));
+});*/

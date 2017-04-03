@@ -40,7 +40,7 @@
     </tr>
     </thead>
     <tbody>
-    <tr ng-repeat="customer in customers | orderBy:id:true" ng-show="showCustomers">
+    <tr ng-repeat="customer in customers" ng-show="showCustomers">
         <td>
             <input type="checkbox" class="checkBox" value="{{customer.id}}" ng-checked="selectAll"
                    ng-model="customer.id"/>
@@ -61,6 +61,10 @@
     </tr>
     </tbody>
 </table>
+
+<div>
+    <posts-pagination></posts-pagination>
+</div>
 
 <!-- show modal  -->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">

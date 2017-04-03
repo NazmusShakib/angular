@@ -1,12 +1,40 @@
+myApp.factory( 'Customer', function($resource){
+    return $resource('customer');
+});
+
 myApp.controller('customerCtrl', ['$scope', '$interval', '$http', '$location', '$timeout', '$routeParams', 'customerModel',
     function ($scope, $interval, $http, $location, $timeout, $routeParams, customerModel) {
         // Get all the customers
-        customerModel.getAllCustomers().then(function (response) {
+        /*getAllCustomers().then(function (response) {
             $timeout(function () {
                 $scope.customers = response.data;
                 $scope.showCustomers = true;
             }, 500);
-        });
+        });*/
+
+        $scope.customers = [];
+        $scope.totalPages = 0;
+        $scope.currentPage = 1;
+        $scope.range = [];
+
+        customerModel.getAllCustomers().then(function (response) {
+                // Old pagination style using http
+                // $http.get('/posts-json?page='+pageNumber).success(function(response) {
+            console.log(response.data);
+
+                $scope.customers        = response.data;
+                $scope.totalPages   = response.last_page;
+                $scope.currentPage  = response.current_page;
+                $scope.showCustomers = true;
+
+                // Pagination Range
+                var pages = [];
+
+                for(var i=1; i<=response.last_page; i++) {
+                    pages.push(i);
+                }
+                $scope.range = pages;
+            });
 
         // IF the param is present, load the single Gallery data.
         if ($routeParams.id) {
@@ -141,13 +169,6 @@ myApp.controller('customerCtrl', ['$scope', '$interval', '$http', '$location', '
                 $scope.flashMessage = false;
             }, 5000);
         };
-
-
-
-
-
-
-
 
         $scope.ToggleSelectAll = function () {
             $scope.selectAll = !$scope.selectAll;

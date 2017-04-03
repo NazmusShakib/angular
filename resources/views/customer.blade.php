@@ -35,6 +35,7 @@
 <script src="{{asset('bower_components/angular-route/angular-route.min.js')}}"></script>
 <script src="{{asset('bower_components/angular-cookies/angular-cookies.min.js')}}"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.2/angular-animate.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.2/angular-resource.min.js"></script>
 {{--My app code is from here.--}}
 <script src="{{asset('ng-customer/app.js')}}"></script>
 <script src="{{asset('ng-customer/ctrlJS/customerCtrl.js')}}"></script>
