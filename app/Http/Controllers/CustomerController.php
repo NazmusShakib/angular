@@ -16,7 +16,7 @@ class CustomerController extends Controller
     public function index(Request $request)
     {
         //return Customer::orderBy('id', 'asc')->get();
-        $customers = Customer::orderBy('id', 'DESC')->paginate(5); // 5 is the number of items to show per page
+        $customers = Customer::orderBy('id', 'DESC')->paginate(4); // 5 is the number of items to show per page
         return $customers;
     }
 
