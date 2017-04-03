@@ -2,27 +2,27 @@ myApp.controller('customerCtrl', ['$scope', '$interval', '$http', '$location', '
     function ($scope, $interval, $http, $location, $timeout, $routeParams, customerModel) {
         // Get all the customers
         /*customerModel.getAllCustomers().then(function (response) {
-            $timeout(function () {
-                $scope.customers = response.data;
-                $scope.showCustomers = true;
-            }, 500);
-        });
-*/
+         $timeout(function () {
+         $scope.customers = response.data;
+         $scope.showCustomers = true;
+         }, 500);
+         });
+         */
         $scope.customers = [];
         $scope.totalPages = 0;
         $scope.currentPage = 1;
         $scope.range = [];
 
         customerModel.getAllCustomers().then(function (response) {
-            console.log(response.data.last_page);
-            $scope.customers    = response.data.data;
-            $scope.totalPages   = response.data.last_page;
-            $scope.currentPage  = response.data.current_page;
+
+            $scope.customers = response.data.data;
+            $scope.totalPages = response.data.last_page;
+            $scope.currentPage = response.data.current_page;
             $scope.showCustomers = true;
 
             // Pagination Range
             var pages = [];
-            for(var i=1; i<=response.data.last_page; i++) {
+            for (var i = 1; i <= response.data.last_page; i++) {
                 pages.push(i);
             }
             $scope.range = pages;
@@ -144,16 +144,37 @@ myApp.controller('customerCtrl', ['$scope', '$interval', '$http', '$location', '
             console.log(success_message);
             customerModel.getAllCustomers().then(function (response) {
                 $timeout(function () {
-                    $scope.customers = response.data;
+                    $scope.customers = response.data.data;
                     $scope.success_message = success_message;
                     $scope.showCustomers = true;
                     $scope.flashMessage = true;
                 }, 200);
             });
-
             $scope.clearFlashMessage();
         };
 
+        // Clicked by paginate URL
+        $scope.getCustomers = function (pageNumber) {
+            if (pageNumber === undefined) {
+                pageNumber = '1';
+            }
+            // Old pagination style using http
+            $http.get('/customer?page=' + pageNumber).then(function (response) {
+                console.log(response.data);
+                $scope.customers = response.data.data;
+                $scope.totalPages = response.data.last_page;
+                $scope.currentPage = response.data.current_page;
+
+                // Pagination Range
+                var pages = [];
+                for (var i = 1; i <= response.data.last_page; i++) {
+                    pages.push(i);
+                }
+                $scope.range = pages;
+            });
+        };
+
+        //''''''''''''''''''''''''''
         // clearFlashMessage
         $scope.clearFlashMessage = function () {
             $interval(function () {
@@ -177,9 +198,8 @@ myApp.controller('customerCtrl', ['$scope', '$interval', '$http', '$location', '
 
 
             var selectedIDs = new Array();
-            angular.forEach ($scope.customer, function (item) {
-                if(item.selected)
-                {
+            angular.forEach($scope.customer, function (item) {
+                if (item.selected) {
                     selectedIDs.push(item.customer);
                 }
             });
@@ -187,12 +207,12 @@ myApp.controller('customerCtrl', ['$scope', '$interval', '$http', '$location', '
             console.log(selectedIDs);
 
             /*var promise = $http.post
-            ("/home/delete", selectedIDs);
-            promise.success(function (msg) {
-                alert(msg);
-            }).error(function () {
-                alert("Error");
-            });*/
+             ("/home/delete", selectedIDs);
+             promise.success(function (msg) {
+             alert(msg);
+             }).error(function () {
+             alert("Error");
+             });*/
         }
 
     }

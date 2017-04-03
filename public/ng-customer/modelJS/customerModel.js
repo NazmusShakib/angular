@@ -12,8 +12,11 @@ myApp.factory('customerModel', ['$http', function ($http) {
                 }
             });
         },
-        getAllCustomers: function () {
-            return $http.get(baseUrl + 'customer');
+        getAllCustomers: function (pageNumber) {
+            if(pageNumber === undefined){
+                pageNumber = '1';
+            }
+            return $http.get(baseUrl + 'customer?page=' + pageNumber);
         },
         getCustomerById: function (id) {
             return $http.get(baseUrl + 'customer/' + id);
