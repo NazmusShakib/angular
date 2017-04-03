@@ -1,9 +1,9 @@
 var myApp = angular.module('myCustomer', ['ngRoute', 'ngAnimate', 'ngResource']
     /*,function($interpolateProvider) {
-        $interpolateProvider.startSymbol('[[');
-        $interpolateProvider.endSymbol(']]');
-    }*/
-    );
+     $interpolateProvider.startSymbol('[[');
+     $interpolateProvider.endSymbol(']]');
+     }*/
+);
 
 myApp.config(['$routeProvider', '$locationProvider',
     function ($routeProvider, $locationProvider) {
@@ -17,17 +17,17 @@ myApp.config(['$routeProvider', '$locationProvider',
     }]);
 
 
-myApp.directive('postsPagination', function(){
-    return{
+myApp.directive('postsPagination', function () {
+    return {
         restrict: 'E',
-        template: '<ul class="pagination">'+
-        '<li ng-show="currentPage != 1"><a href="javascript:void(0)" ng-click="getPosts(1)">&laquo;</a></li>'+
-        '<li ng-show="currentPage != 1"><a href="javascript:void(0)" ng-click="getPosts(currentPage-1)">&lsaquo; Prev</a></li>'+
-        '<li ng-repeat="i in range" ng-class="{active : currentPage == i}">'+
-        '<a href="javascript:void(0)" ng-click="getPosts(i)">{{i}}</a>'+
-        '</li>'+
-        '<li ng-show="currentPage != totalPages"><a href="javascript:void(0)" ng-click="getPosts(currentPage+1)">Next &rsaquo;</a></li>'+
-        '<li ng-show="currentPage != totalPages"><a href="javascript:void(0)" ng-click="getPosts(totalPages)">&raquo;</a></li>'+
+        template: '<ul class="pagination">' +
+        '<li ng-show="currentPage != 1"><a href="javascript:void(0)" ng-click="getPosts(1)">&laquo;</a></li>' +
+        '<li ng-show="currentPage != 1"><a href="javascript:void(0)" ng-click="getPosts(currentPage-1)">&lsaquo; Prev</a></li>' +
+        '<li ng-repeat="i in range" ng-class="{active : currentPage == i}">' +
+        '<a href="javascript:void(0)" ng-click="getPosts(i)">{{i}}</a>' +
+        '</li>' +
+        '<li ng-show="currentPage != totalPages"><a href="javascript:void(0)" ng-click="getPosts(currentPage+1)">Next &rsaquo;</a></li>' +
+        '<li ng-show="currentPage != totalPages"><a href="javascript:void(0)" ng-click="getPosts(totalPages)">&raquo;</a></li>' +
         '</ul>'
     };
 });
